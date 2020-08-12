@@ -21,4 +21,7 @@ $router->group(['namespace' => 'Api', 'prefix' => 'api'], function() use ($route
 {
     $router->post('login', ['uses' => 'AuthController@login']);
     $router->post('register', ['uses' => 'AuthController@register']);
+
+    $router->get('/task', ['uses' => 'TaskController@index']);
+    $router->get('/task/{task}', ['uses' => 'TaskController@show']);
 });
