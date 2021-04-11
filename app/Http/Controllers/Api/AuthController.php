@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Http\Controllers\Api;
 
@@ -7,10 +7,17 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Http\JsonResponse;
 
 class AuthController extends Controller
 {
-    public function register(Request $request)
+    /**
+     * User register function
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function register(Request $request): JsonResponse
     {
         $data = $this->validate($request, [
             'email' => 'required|unique:users|email',
@@ -26,7 +33,13 @@ class AuthController extends Controller
         return response()->json($user);
     }
 
-    public function login(Request $request)
+    /**
+     * User login function
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function login(Request $request): JsonResponse
     {
         $data = $this->validate($request, [
             'email' => 'required|email',
